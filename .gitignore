@@ -1,4 +1,5 @@
 node_modules
+**/pocketbase.exe
 
 # Output
 .output
