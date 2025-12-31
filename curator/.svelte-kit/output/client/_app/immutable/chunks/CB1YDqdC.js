@@ -1,1 +1,0 @@
-import{s as e,p as r}from"./FAXfw1af.js";import{M as t}from"./CqKpht16.js";const a={get error(){return r.error},get params(){return r.params},get status(){return r.status},get url(){return r.url}};e.updated.check;const p=a;t();export{p};

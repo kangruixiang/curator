@@ -2,6 +2,7 @@ node_modules
 **/pocketbase.exe
 **/pb_data
 **/build
+**/.svelte-kit
 
 # Output
 .output
