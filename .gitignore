@@ -1,12 +1,14 @@
 node_modules
 **/pocketbase.exe
+**/pb_data
+**/build
 
 # Output
 .output
 .vercel
 /.svelte-kit
 /build
-/db/pb_data
+
 
 # OS
 .DS_Store
