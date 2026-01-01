@@ -18,4 +18,5 @@ COPY pb_hooks ./db/pb_hooks
 # Expose app port
 EXPOSE 8090
 
-CMD ["./db/pocketbase", "serve"]
+CMD ["./db/pocketbase", "serve", "--http=0.0.0.0:8090"]
+

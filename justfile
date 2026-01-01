@@ -11,3 +11,6 @@ dev:
 
 start: 
   concurrently "cd pocketbase && pocketbase serve" "cd curator && pnpm run start"
+
+prod:
+  concurrently "cd pocketbase && pocketbase serve" "cd curator && node build"

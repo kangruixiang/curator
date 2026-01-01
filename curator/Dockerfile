@@ -11,7 +11,7 @@ COPY . .
 
 # Build the app
 RUN npm run build
-RUN npm prune --production
+# RUN npm prune --production
 
 # === Runner stage ===
 FROM node:alpine AS runner
@@ -24,5 +24,5 @@ COPY --from=builder /app/package.json ./
 
 # Expose app port
 EXPOSE 3000
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 CMD ["node", "build"]

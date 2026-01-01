@@ -1,3 +1,5 @@
+import { POCKETBASE_URL } from '$env/dynamic/public';
+
 // Pocketbase login
 export const superUser = 'admin@pocketbase.com'
 export const superUserPass = 'amiodarone'
@@ -14,4 +16,4 @@ export const inboxNotebook = 'Inbox'
 
 // Pocketbase urls
 export const baseURL = 'http://127.0.0.1:8090/api/files'
-export const pbURL = 'http://127.0.0.1:8090'
+export const pbURL = process.env.POCKETBASE_URL || 'http://127.0.0.1:8090'

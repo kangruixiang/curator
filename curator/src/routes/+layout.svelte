@@ -18,6 +18,7 @@
 
 	import { Command, Dock, Icon, NotebookList, Pinned, TagList } from '$lib/components';
 	import { getMobileState, setMobileState, getMouseState, setMouseState } from '$lib/utils.svelte';
+	import { browser } from '$app/environment';
 
 
 	let { children } = $props();
@@ -94,6 +95,7 @@
 
 <Command />
 
+{#if browser}
 <Resizable.PaneGroup
 	direction="horizontal"
 	class="{mouseState.isBusy ? 'cursor-progress' : ''} font-display max-h-screen min-h-screen w-full"
@@ -117,7 +119,7 @@
 		</li>
 		<li>
 			<a
-				class="{page.url.pathname == '/' || page.url.pathname == ''
+				class="{page.url.pathname == '/' || !page.url.pathname
 					? 'menu-active'
 					: ''} flex w-full justify-between"
 				href="/"
@@ -173,3 +175,4 @@
 </Resizable.PaneGroup>
 
 <Dock />
+{/if}
