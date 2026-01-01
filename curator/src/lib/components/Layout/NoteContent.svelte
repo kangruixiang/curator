@@ -15,7 +15,8 @@
 		addThumbnailToRecord,
 		getFileHash,
 		getResourceforThumbGen,
-		makeResourceFromFile
+		makeResourceFromFile,
+		replacePbUrl
 	} from '$lib/utils';
 
 	type Props = {
@@ -25,7 +26,7 @@
 	let { noteState }: Props = $props();
 
 	let note = $derived(noteState.note);
-	let content = $derived(noteState.note?.content ?? '');
+	let content = $derived(replacePbUrl(noteState.note?.content ?? ''));
 	let noteTitle = $state(noteState.note?.title ?? '');
 	let textContent = $state('');
 	let editor: Element;

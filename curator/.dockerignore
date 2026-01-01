@@ -3,6 +3,7 @@ node_modules/
 *.log
 build/
 **/pb_data/
+**/.env
 
 .dockerignore
 .git

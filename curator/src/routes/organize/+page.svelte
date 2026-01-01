@@ -3,7 +3,7 @@
 	import { ScrollArea } from '$lib/components/ui/scroll-area';
 	import { Archive, Trash2 } from 'lucide-svelte';
 
-	import { New, NotebookList, TagList } from '$lib/components';
+	import { New, NotebookList, TagList, Pinned } from '$lib/components';
 	import { getNotebookState, getTagState } from '$lib/db.svelte';
 	import type { Notebook } from '$lib/types';
 
@@ -34,6 +34,16 @@
 <ScrollArea class="h-[calc(100vh-60px)]">
 	<div class="p-golden-xl mx-auto max-w-5xl">
 		<div class="flex items-center px-3">
+			<h1 class="grow">Pinned</h1>
+		</div>
+
+		<div class="card p-golden-md">
+			<Pinned />
+		</div>
+
+		<div class="divider"></div>
+
+		<div class="flex items-center px-3">
 			<h1 class="grow">Notebooks</h1>
 			<button
 				onclick={() => {
@@ -47,9 +57,9 @@
 			<ul class="menu w-full">
 				<NotebookList allowEdit={true} notebooks={notebookState.notebooks} />
 
-				<li class="ml-0 mr-4 pl-0"><a href="#/archive"><Archive size={18} />Archive</a></li>
+				<li class="mr-4 ml-0 pl-0"><a href="#/archive"><Archive size={18} />Archive</a></li>
 
-				<li class="ml-0 mr-4 pl-0"><a href="#/trash"><Trash2 size={18} />Trash</a></li>
+				<li class="mr-4 ml-0 pl-0"><a href="#/trash"><Trash2 size={18} />Trash</a></li>
 			</ul>
 		</div>
 

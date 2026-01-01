@@ -4,6 +4,7 @@
 	import type { Note } from '$lib/types';
 	import { X } from 'lucide-svelte';
 	import { onDestroy, onMount } from 'svelte';
+	import { replacePbUrl } from '$lib/utils';
 
 	type Props = {
 		isOpen: boolean;
@@ -153,7 +154,7 @@
 									<img
 										class="peer-checked:border-primary border-base-200
 										w-[200px] rounded-md border-4 transition-transform duration-100 ease-in-out peer-checked:scale-105"
-										src="{resource.fileURL}?thumb=200x0"
+										src="{replacePbUrl(resource.fileURL)}?thumb=200x0"
 										alt=""
 									/>
 								</label>

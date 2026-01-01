@@ -10,7 +10,7 @@ services:
     image: kangruixiang/curator:latest
     environment:
       - PUBLIC_POCKETBASE_URL=http://localhost:8090
-      - PUBLIC_INTERNAL_POCKETBASE_URL=http://pocketbase:8080
+      - PUBLIC_INTERNAL_POCKETBASE_URL=http://pocketbase:8090
     depends_on:
       - pocketbase
     ports:

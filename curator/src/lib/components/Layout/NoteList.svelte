@@ -7,6 +7,7 @@
 
 	import type { NoteList, Note } from '$lib/types';
 	import { getNoteState, setNoteState } from '$lib/db.svelte';
+	import { replacePbUrl } from '$lib/utils';
 
 	type Props = {
 		isBulkEdit: boolean;
@@ -41,7 +42,7 @@
 				><source src={note.thumbnail} />Your browser does not support the video tag.</video
 			>
 		{:else} -->
-			<img class="w-full" src={note.thumbnail} alt="" />
+			<img class="w-full" src={replacePbUrl(note.thumbnail)} alt="" />
 			<!-- {/if} -->
 		</figure>
 	{/key}

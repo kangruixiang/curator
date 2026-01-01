@@ -1,4 +1,4 @@
-import { PUBLIC_POCKETBASE_URL, PUBLIC_INTERNAL_POCKETBASE_URL } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 
 import { browser } from '$app/environment';
 
@@ -20,10 +20,17 @@ export const inboxNotebook = 'Inbox';
 export const baseURL = 'http://127.0.0.1:8090/api/files';
 
 const isDev = import.meta.env.DEV;
+console.log('isDev:', isDev);
+console.log('browser', browser);
 
 // Determine the correct URL based on where the code is executing
 export const pbURL = isDev
-	? PUBLIC_POCKETBASE_URL // Browser sees localhost
+	? env.PUBLIC_POCKETBASE_URL // Browser sees localhost
 	: browser
-		? PUBLIC_POCKETBASE_URL
-		: PUBLIC_INTERNAL_POCKETBASE_URL; // Server sees Docker name
+		? env.PUBLIC_POCKETBASE_URL
+		: env.PUBLIC_INTERNAL_POCKETBASE_URL; // Server sees Docker name
+
+console.log('pocketbase public:', env.PUBLIC_POCKETBASE_URL);
+console.log('pocketbase internal', env.PUBLIC_INTERNAL_POCKETBASE_URL);
+
+console.log('pbURL:', pbURL);

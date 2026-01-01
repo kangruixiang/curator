@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
 @import 'tailwindcss';
 @import 'tw-golden-spacing';
+
 
 @plugin "tailwindcss-motion";
 @plugin 'daisyui' {
@@ -58,14 +60,18 @@
 	font-variant-numeric: oldstyle-nums;
 }
 
+
 @theme {
 	--font-display: 'Concourse4', 'sans-serif';
 	--font-bold: 'Concourse4_bold', 'sans-serif';
+	--font-inter: "Inter", sans-serif;
 	--break-point-2xl: 100rem;
 	--breakpoint-3xl: 120rem;
 	--breakpoint-4xl: 160rem;
 	--breakpoint-5xl: 240rem;
 }
+
+
 
 @layer base {
 	html {
