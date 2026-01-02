@@ -228,7 +228,7 @@ export async function createThumbnail(recordID: string, resources: Resource[]) {
 
 	const mimeType = thumbFile.type;
 	const defaultThumbURL = thumbFile.fileURL;
-	const videoURL = thumbFile.fileURL;
+	const videoURL = replacePbUrl(thumbFile.fileURL);
 
 	if (
 		!mimeType.includes('image') &&
