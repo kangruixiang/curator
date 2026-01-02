@@ -82,7 +82,7 @@
 	let defaultNotebooks = $state();
 
 	onMount(async () => {
-		// updateScreenWidth();
+		updateScreenWidth();
 		defaultNotebooks = getDefaultNotebooks();
 		await settingState.getDefaultSettings();
 	});

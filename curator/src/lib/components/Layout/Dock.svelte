@@ -7,22 +7,22 @@
 		{
 			name: 'Discover',
 			icon: House,
-			url: '#/discover'
+			url: '/discover'
 		},
 		{
 			name: 'Notes',
 			icon: NotebookText,
-			url: '#/'
+			url: '/'
 		},
 		{
 			name: 'Organize',
 			icon: WalletCards,
-			url: '#/organize'
+			url: '/organize'
 		},
 		{
 			name: 'Settings',
 			icon: Settings,
-			url: '#/settings'
+			url: '/settings'
 		}
 	];
 </script>
