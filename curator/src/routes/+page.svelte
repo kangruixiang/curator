@@ -2,8 +2,6 @@
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 
-	import { ScrollArea } from '$lib/components/ui/scroll-area';
-
 	import { getNotelistState, setNotelistState } from '$lib/db.svelte';
 	import {
 		Pagination,
@@ -19,6 +17,7 @@
 	import { saveCurrentPage, signalPageState } from '$lib/utils.svelte';
 	import { getSearchState, setSearchState, type SearchState } from '$lib/search.svelte';
 	import type { NoteType } from '$lib/types';
+	import { ScrollState } from 'runed';
 
 	let searchInput = $state('');
 	let isBulkEdit = $state(false);
@@ -40,7 +39,15 @@
 
 	const savedPage = $derived<number>(signalPageState.savedPages.get(page.url.hash) ?? 1);
 
+	let scrollEl = $state<HTMLElement>();
+
+	const scroll = new ScrollState({
+		element: () => scrollEl
+	});
+
 	const updatePage = async (newPage: number) => {
+		scroll.scrollToTop();
+
 		// saves current clicked page number
 		saveCurrentPage(newPage);
 		notelistState.clickedPage = newPage;
@@ -102,8 +109,7 @@
 	<BulkEditBtn bind:isBulkEdit bind:selectedNotesID />
 </Topbar.Root>
 
-<!-- <ScrollArea scrollHideDelay={200} class="relative mb-20 h-[calc(100vh-60px)] overflow-y-auto"> -->
-<div class="relative mb-20 h-[calc(100vh-60px)] overflow-y-auto">
+<div bind:this={scrollEl} class="relative mb-20 h-[calc(100vh-60px)] overflow-y-auto">
 	{#await initialLoading}
 		<NoteLoading />
 	{:then}
@@ -137,7 +143,6 @@
 		{/if}
 	{/await}
 </div>
-<!-- </ScrollArea> -->
 
 <FilterSearch
 	bind:isOpen={isFilterSearch}
