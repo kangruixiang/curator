@@ -31,7 +31,7 @@
 		<ContextMenu.Trigger class="flex cursor-auto items-center justify-between p-0 pr-2">
 			<a
 				href="/tags/{tag.id}"
-				class="{page.url.hash == `/tags/${tag.id}`
+				class="{page.url.pathname == `/tags/${tag.id}`
 					? 'badge-neutral'
 					: ''} badge hover:badge-neutral mx-2 my-2 flex items-center gap-x-2 text-nowrap transition-colors"
 			>
@@ -104,30 +104,30 @@
 </svelte:boundary>
 
 {#if selectedTag}
-<Rename
-	bind:isOpen={isEditOpen}
-	renameType="Tag"
-	currentName={selectedTag.name}
-	action={(renameTagName) => tagState.updateOnebyName(selectedTag.id, renameTagName)}
-/>
+	<Rename
+		bind:isOpen={isEditOpen}
+		renameType="Tag"
+		currentName={selectedTag.name}
+		action={(renameTagName) => tagState.updateOnebyName(selectedTag.id, renameTagName)}
+	/>
 
+	<Delete bind:isOpen={isDeleteOpen} name="Tag" action={() => tagState.delete(selectedTag.id)}
+		>this tag?</Delete
+	>
 
-<Delete bind:isOpen={isDeleteOpen} name="Tag" action={() => tagState.delete(selectedTag.id)}
-	>this tag?</Delete
->
+	<ChangeParent
+		bind:isOpen={isChangeParentOpen}
+		type="tag"
+		fullList={flatTags}
+		currentItemID={selectedTag?.id}
+		clear={() => tagState.updateOnebyParent(selectedTag?.id, '')}
+		action={(selectedParentTagID) =>
+			tagState.updateOnebyParent(selectedTag?.id, selectedParentTagID)}
+	/>
 
-<ChangeParent
-	bind:isOpen={isChangeParentOpen}
-	type="tag"
-	fullList={flatTags}
-	currentItemID={selectedTag?.id}
-	clear={() => tagState.updateOnebyParent(selectedTag?.id, '')}
-	action={(selectedParentTagID) => tagState.updateOnebyParent(selectedTag?.id, selectedParentTagID)}
-/>
-
-<New
-	bind:isOpen={isNewTagOpen}
-	newType="Tag"
-	action={(newTagName) => tagState.createOnebyName(newTagName, selectedTag.id)}
-/>
+	<New
+		bind:isOpen={isNewTagOpen}
+		newType="Tag"
+		action={(newTagName) => tagState.createOnebyName(newTagName, selectedTag.id)}
+	/>
 {/if}

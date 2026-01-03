@@ -16,8 +16,9 @@
 {#snippet renderNotebook(notebook: Notebook)}
 	<ContextMenu.Root>
 		<ContextMenu.Trigger>
-			class="{page.url.hash == `/notebook/${notebook.id}` ? ' bg-neutral text-neutral-content' : ''} my-1
-			flex cursor-auto items-center justify-between rounded-md p-0 pr-1" >
+			class="{page.url.pathname == `/notebook/${notebook.id}`
+				? ' bg-neutral text-neutral-content'
+				: ''} my-1 flex cursor-auto items-center justify-between rounded-md p-0 pr-1" >
 			<div class=" flex w-full items-center justify-between">
 				<a href="/notebook/{notebook.id}" class="w-full px-3 py-1 text-nowrap">
 					{notebook.name}
@@ -42,7 +43,7 @@
 		>
 			<a
 				href="/tags/{tag.id}"
-				class="{page.url.hash == `/tags/${tag.id}`
+				class="{page.url.pathname == `/tags/${tag.id}`
 					? 'badge-neutral'
 					: ''} badge hover:badge-neutral mx-0 my-1 flex items-center gap-x-2 text-nowrap transition-colors"
 			>
