@@ -13,7 +13,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	// ${pbUrl} allows the browser to talk to PocketBase
 	const csp = [
 		"default-src 'self'",
-		`connect-src 'self' ${pbUrl}`,
+		`connect-src 'self' http://127.0.0.1:8090 ${pbUrl}`,
 		`img-src 'self' https://i.ytimg.com data: http://127.0.0.1:8090 http://localhost:8090 ${pbUrl} blob:${pbUrl}`,
 		`media-src 'self' data: http://127.0.0.1:8090 http://pocketbase:8090 http://localhost:8090 ${pbUrl}`,
 		"script-src 'self' 'unsafe-inline'", // Svelte needs inline scripts for hydration

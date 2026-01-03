@@ -33,6 +33,7 @@
 		searchState.selectedTagIdArray = filterTagIdArray;
 		searchState.selectedExcludeTagIdArray = filterExcludeTagIdArray;
 		searchState.makeFilterQuery(searchState.searchInput);
+		console.log('searchState', searchState);
 		search(searchState.customFilter);
 		isOpen = false;
 	}
