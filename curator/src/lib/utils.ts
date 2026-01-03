@@ -453,7 +453,11 @@ export function makeResourceFromFile(file: File, hash: string, url: string) {
  * Given one old resource, upload attachment to new record, and return new resource
  */
 async function createOneNewResource(recordID: string, resource: Resource) {
-	const attachment = await downloadAttachmentByURL(resource.fileURL, resource.name, resource.type);
+	const attachment = await downloadAttachmentByURL(
+		replacePbUrl(resource.fileURL),
+		resource.name,
+		resource.type
+	);
 	return {
 		name: resource.name,
 		fileURL: await uploadFileToPocketbase(recordID, attachment),
