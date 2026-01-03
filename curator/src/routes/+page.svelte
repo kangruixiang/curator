@@ -118,16 +118,7 @@
 			totalPages={notelistState.notes.totalPages}
 			changePage={(newPage: number) => updatePage(newPage)}
 		/>
-		{#if isBulkEdit}
-			<BulkToolbar
-				updatePage={() => {
-					updatePage(notelistState.clickedPage);
-				}}
-				bind:isBulkEdit
-				bind:selectedNotesID
-				{notelistState}
-			/>
-		{/if}
+
 		{#if notelistState.notes.totalItems > 0}
 			<NoteList
 				{isBulkEdit}
@@ -140,6 +131,16 @@
 		{:else}
 			<Blank />
 			<!-- <NoteLoading /> -->
+		{/if}
+		{#if isBulkEdit}
+			<BulkToolbar
+				updatePage={() => {
+					updatePage(notelistState.clickedPage);
+				}}
+				bind:isBulkEdit
+				bind:selectedNotesID
+				{notelistState}
+			/>
 		{/if}
 	{/await}
 </div>

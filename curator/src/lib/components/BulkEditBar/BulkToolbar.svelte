@@ -52,7 +52,7 @@
 </script>
 
 <div
-	class="bg-base-100/95 border-t-base-200 motion-opacity-in-0 motion-duration-100 motion-scale-in-95 absolute bottom-0 left-0 z-20 flex w-full items-center justify-center border-t py-6 backdrop-blur-2xl 2xl:py-10"
+	class="bg-base-100/95 border-t-base-200 motion-opacity-in-0 motion-duration-200 motion-scale-in-95 sticky bottom-0 left-0 z-20 flex w-full items-center justify-center border-t py-6 backdrop-blur-2xl 2xl:py-10"
 >
 	<div class="gap-golden-md flex flex-col items-center md:flex-row">
 		<div class="gap-x-golden-md grid auto-cols-min grid-cols-4 md:mr-4">
