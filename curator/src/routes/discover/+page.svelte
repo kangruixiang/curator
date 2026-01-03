@@ -36,13 +36,17 @@
 	async function getNextNote() {
 		if (currentIndex == lastItemIndex && currentPage == totalPages) return;
 		currentIndex++;
-		if (currentIndex == 100) {
+		if (currentIndex == 30) {
 			currentPage++;
-			await noteState.getDiscoverNoteList(currentPage);
+			await noteState.getDiscoverNoteList(undefined, currentPage);
 			currentIndex = 0;
 		}
+		// const start = performance.now();
 		await noteState.getDiscoverNote(currentIndex);
 		lastItemIndex = noteState.noteList.items.length - 1;
+		// const end = performance.now();
+
+		// console.log(`Discover page new note  in ${end - start} ms`);
 	}
 
 	async function getPreviousNote() {
@@ -50,7 +54,7 @@
 		currentIndex--;
 		if (currentIndex < 0 && currentPage > 1) {
 			currentPage--;
-			await noteState.getDiscoverNoteList(currentPage);
+			await noteState.getDiscoverNoteList(undefined, currentPage);
 			currentIndex = 99;
 		}
 		await noteState.getDiscoverNote(currentIndex);
@@ -131,7 +135,9 @@
 		</Topbar.Root>
 
 		<div class="h-[calc(100vh-60px)]">
-			<NoteContent {noteState} />
+			{#key currentIndex}
+				<NoteContent {noteState} />
+			{/key}
 		</div>
 
 		<Navbar class="p-golden-md bg-base-100 flex flex-col items-end gap-y-2 rounded-md">
