@@ -6,6 +6,9 @@ set windows-shell := ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", 
 default: 
   just --list --unsorted
 
+install: 
+  concurrently "cd curator && pnpm install"
+
 dev: 
   concurrently "cd pocketbase && pocketbase serve" "cd curator && pnpm run dev"
 
@@ -16,9 +19,9 @@ prod:
   concurrently "cd pocketbase && pocketbase serve" "cd curator && node build"
 
 docker-curator:
-  docker build -t kangruixiang/curator:0.0.6 ./curator
-  docker tag kangruixiang/curator:0.0.6 kangruixiang/curator:latest
-  docker push kangruixiang/curator:0.0.6
+  docker build -t kangruixiang/curator:0.0.7 ./curator
+  docker tag kangruixiang/curator:0.0.7 kangruixiang/curator:latest
+  docker push kangruixiang/curator:0.0.7
   docker push kangruixiang/curator:latest
 
 docker-pocketbase:
