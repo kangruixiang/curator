@@ -1,16 +1,14 @@
 <script lang="ts">
-	let version = $derived.by(async () => {
-		return await window.electronAPI.getAppVersion();
-	});
+	import { Github, Globe } from 'lucide-svelte';
 </script>
 
 <div class="card">
-	<div class="card-body">
-		<div class="card-title text-xl">App Version</div>
+	<div class="gap-golden-md flex items-center justify-end">
 		<div>
-			{#await version then version}
-				Version: {version}
-			{/await}
+			<a href="https://curator.krxiang.com"><Globe /></a>
+		</div>
+		<div>
+			<a href="https://github.com/Snippet-Curator/curator"><Github /></a>
 		</div>
 	</div>
 </div>
