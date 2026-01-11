@@ -37,6 +37,14 @@ import {
 
 const pb = new PocketBase(pbURL);
 
+const re = new RegExp('/api/collections/[^/]+/records');
+pb.beforeSend = (url, options) => {
+	if (re.test(url) && options.method === 'GET') {
+		url += '/fts';
+	}
+	return { url, options };
+};
+
 export async function getAuth() {
 	await pb.collection('_superusers').authWithPassword(superUser, superUserPass);
 	console.log('Logged in to Pocket client: ', pb.authStore.isValid);
@@ -54,6 +62,29 @@ export async function makeDefaultNotebook() {
 			console.error('Error making Inbox: ', error.message);
 		}
 	}
+}
+
+export async function addFtsCollection() {
+	const collectionData = {
+		collection: 'notes',
+		tokenizer: 'porter'
+	};
+
+	const { data, error } = await tryCatch<RecordModel, PError>(
+		pb.collection('_fts').create(collectionData)
+	);
+
+	if (error) {
+		if (error.data.data.collection.code == 'validation_not_unique') {
+			console.log('Fts already exists');
+			return;
+		} else {
+			console.error('Error making fts: ', error.message);
+			return;
+		}
+	}
+
+	console.log('FTS collection added');
 }
 
 export async function uploadFileToPocketbase(recordID: string, file: File) {
@@ -556,9 +587,8 @@ export class NotelistState {
 		return this.notes;
 	}
 
-	async getByFilter(customFilters: string, page) {
+	async getByFilter(customFilters: string, page: number) {
 		const start = performance.now();
-		// console.log(customFilters)
 		const { data, error } = await tryCatch(
 			pb.collection(notesCollection).getList(page, 24, {
 				sort: '-created',

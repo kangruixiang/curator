@@ -19,9 +19,9 @@ prod:
   concurrently "cd pocketbase && pocketbase serve" "cd curator && node build"
 
 docker-curator:
-  docker build -t kangruixiang/curator:0.0.11 ./curator
-  docker tag kangruixiang/curator:0.0.11 kangruixiang/curator:latest
-  docker push kangruixiang/curator:0.0.11
+  docker build -t kangruixiang/curator:0.0.12 ./curator
+  docker tag kangruixiang/curator:0.0.12 kangruixiang/curator:latest
+  docker push kangruixiang/curator:0.0.12
   docker push kangruixiang/curator:latest
 
 docker-pocketbase:
