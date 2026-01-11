@@ -67,6 +67,7 @@ export async function makeDefaultNotebook() {
 export async function addFtsCollection() {
 	const collectionData = {
 		collection: 'notes',
+		fields: ['resources', 'title', 'content', 'description'],
 		tokenizer: 'porter'
 	};
 
