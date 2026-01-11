@@ -37,7 +37,7 @@ import {
 
 const pb = new PocketBase(pbURL);
 
-const re = new RegExp('/api/collections/[^/]+/records');
+const re = new RegExp('/api/collections/notes/records?filter=');
 pb.beforeSend = (url, options) => {
 	if (re.test(url) && options.method === 'GET') {
 		url += '/fts';
